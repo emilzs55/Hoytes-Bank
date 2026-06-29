@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!--Fontawesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!--Estilos-->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h2>Saldo disponible</h2>
-                            <span class="saldo">$400.000</span>
+                            <span class="saldo">$0</span>
                             <p>Tu saldo total actual</p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
             </div>
         </section>
         <section class="container">
-            <div class="row row-gap-3  justify-content-center">
+            <div class="row row-gap-3 justify-content-center">
                 <div class="col-10 col-md-3">
                     <div class="card">
                         <div class="card-body text-center">
@@ -72,15 +72,26 @@
         <p class="text-center">© 2026 Alke Wallet</p>
     </footer>
     
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        //Proteger página contra manipulación de sesión
+        let sesionValida = false;
+        try {
+            const usuario = JSON.parse(localStorage.getItem("usuarioLogueado"));
+            if(usuario && usuario.usuario){
+                sesionValida = true;
+            }
+        } catch(err) {
+            sesionValida = false;
+        }
 
-        //Proteger página
-        const usuarioLogueado = localStorage.getItem("usuarioLogueado");
-
-        if(!usuarioLogueado){
+        if(!sesionValida){
+            localStorage.removeItem("usuarioLogueado");
             window.location.href = "login.html";
         }
 
@@ -90,9 +101,17 @@
             window.location.href = "login.html";
         })
 
-        //SALDO
-        const saldo = Number(localStorage.getItem("saldo")) || 0
+        //SALDO verificado
+        let saldo = Number(localStorage.getItem("saldo"));
+        if(isNaN(saldo) || saldo < 0){
+            saldo = 0;
+            localStorage.setItem("saldo", "0");
+        }
         document.querySelector(".saldo").textContent = "$" + saldo.toLocaleString("es-CL");
+
+        $(document).ready(function(){
+            $(".card").hide().fadeIn(600);
+        });
     </script>
 </body>
 </html>

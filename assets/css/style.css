@@ -32,9 +32,87 @@ footer{
     height: 5vh;
 }
 
+/* estilos para las tarjetas y contenedores */
+.card{
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+}
+
+.card:hover{
+    transform: translateY(-2px);
+    transition: 0.3s;
+}
+
+.saldo{
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #5cf5a0;
+    display: block;
+    margin: 10px 0;
+}
+
+.form-control{
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 6px;
+}
+
+.form-control::placeholder{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-control:focus{
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: none;
+    border-color: #5cf5a0;
+}
+
+.btn-success{
+    background-color: #2ecc71;
+    border: none;
+}
+
+.btn-success:hover{
+    background-color: #27ae60;
+}
+
+/* tabla de transacciones */
+.table{
+    color: white;
+}
+
+.table thead th{
+    background-color: rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid white;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd){
+    background-color: rgba(255, 255, 255, 0.05);
+    --bs-table-bg-type: transparent;
+}
+
+.badge{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+a{
+    color: #5cf5a0;
+    text-decoration: none;
+}
+
 @media (max-width: 767px){
     #menu{
         height: 100%;
         padding: 30px 0 50px;
+    }
+    
+    .saldo{
+        font-size: 1.8rem;
     }
 }
