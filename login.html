@@ -31,7 +31,7 @@
                             <input type="password" name="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
                         </div>
                         <div class="mt-5">
-                            <button class="btn btn-success w-100">Iniciar sesión</button>
+                            <button type="submit" class="btn btn-success w-100">Iniciar sesión</button>
                         </div>
                     </form>
                     <div>
@@ -45,6 +45,9 @@
         <p class="text-center">© 2026 Alke Wallet</p>
     </footer>
     
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -52,10 +55,15 @@
         document.getElementById("form-login").addEventListener("submit", function(event){
             event.preventDefault();
 
-            const usuario = document.getElementById("usuario").value;
+            const usuario = document.getElementById("usuario").value.trim().toLowerCase();
             const password = document.getElementById("password").value;
 
-            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            let usuarios = [];
+            try {
+                usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            } catch(e) {
+                usuarios = [];
+            }
 
             const usuarioEncontrado = usuarios.find(function (user){
                 return user.usuario === usuario && user.password === password;
@@ -68,17 +76,17 @@
                 <div class="alert alert-success alert-dismissible fade show">
                     Inicio de sesión exitoso.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <div>
+                </div>
                 `;
                 setTimeout(() =>{
                     window.location.href = "menu.html";
-                }, 3000)
+                }, 2000)
             }else{
                 document.getElementById("mensaje").innerHTML = `
                 <div class="alert alert-danger alert-dismissible fade show">
                     Usuario y/o contraseña incorrectos.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <div>
+                </div>
                 `;
                 setTimeout(() =>{
                     document.getElementById("mensaje").innerHTML ="";

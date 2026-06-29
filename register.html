@@ -32,7 +32,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Ingrese su contraseña (mínimo 4 caracteres)" required minlength="4">
                         </div>
                         <div class="mb-3">
                             <label for="confirmar_password" class="form-label">Confirmar contraseña</label>
@@ -53,6 +53,9 @@
         <p class="text-center">© 2026 Alke Wallet</p>
     </footer>
     
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -60,8 +63,9 @@
         document.getElementById("form-registro").addEventListener("submit", function(event){
             event.preventDefault();
 
-            const nombre = document.getElementById("nombre").value;
-            const usuario = document.getElementById("usuario").value;
+            //limpiar y validar textos (seguridad básica)
+            const nombre = document.getElementById("nombre").value.trim();
+            const usuario = document.getElementById("usuario").value.trim().toLowerCase();
             const password = document.getElementById("password").value;
             const confirmarPassword = document.getElementById("confirmar_password").value;
 
@@ -70,31 +74,63 @@
                 <div class="alert alert-danger alert-dismissible fade show">
                     Las contraseñas no coinciden.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <div>
+                </div>
                 `;
                 return;
             }
 
-            const nuevoUsuario = {
-                nombre, usuario, password
-            };
+            if(password.length < 4){
+                document.getElementById("mensaje").innerHTML = `
+                <div class="alert alert-danger alert-dismissible fade show">
+                    La contraseña es muy insegura (mínimo 4 caracteres).
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                `;
+                return;
+            }
 
             let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-            usuarios.push(nuevoUsuario);
+            //verificar duplicados
+            const existe = usuarios.some(function(u){ return u.usuario === usuario; });
+            if(existe){
+                document.getElementById("mensaje").innerHTML = `
+                <div class="alert alert-warning alert-dismissible fade show">
+                    El usuario ya está registrado en el sistema.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                `;
+                return;
+            }
 
+            //sanitizar entradas para prevenir XSS simple
+            const nombreLimpio = nombre.replace(/</g, "").replace(/>/g, "");
+
+            const nuevoUsuario = {
+                nombre: nombreLimpio, 
+                usuario: usuario, 
+                password: password
+            };
+
+            usuarios.push(nuevoUsuario);
             localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
+            //Asignar saldo inicial de 400.000 si no existe o si es inválido
+            let saldoActual = Number(localStorage.getItem("saldo"));
+            if(isNaN(saldoActual) || saldoActual < 0 || !localStorage.getItem("saldo")){
+                localStorage.setItem("saldo", "400000");
+            }
+
             document.getElementById("mensaje").innerHTML = `
-                <div class="alert alert-success alert-dismissible fade show">
-                    Registro exitoso. Redirigiendo....
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <div>
-                `;
+            <div class="alert alert-success alert-dismissible fade show">
+                Registro exitoso. Redirigiendo....
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            `;
 
             setTimeout(() =>{
                 window.location.href = "login.html";
-            }, 3000);
+            }, 2500);
 
         })
     </script>
