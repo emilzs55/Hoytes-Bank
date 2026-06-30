@@ -18,6 +18,9 @@
     <header class="d-flex justify-content-between align-items-center">
         <a href="menu.html" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
         <h1 class="text-center"><a href="menu.html">Hoyte's Bank</a></h1>
+        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+        </button>
         <button id="logout" class="btn btn-danger">
             <i class="fa-solid fa-power-off"></i>
         </button>
@@ -31,7 +34,7 @@
                             <i class="fa-solid fa-microchip chip-tarjeta mb-0"></i>
                             <span class="badge bg-light text-dark fw-bold">HOYTE'S BANK</span>
                         </div>
-                        <p class="text-white-50 mb-0 small text-uppercase">Saldo disponible</p>
+                        <p class="text-white-50 mb-0 small text-uppercase" data-lang="saldoDisponible">Saldo disponible</p>
                         <span class="saldo mb-0">£0</span>
                     </div>
                 </div>
@@ -46,11 +49,11 @@
                     <!-- agenda de contactos -->
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h4>Contactos</h4>
+                            <h4 data-lang="contactos">Contactos</h4>
                             <div id="lista-badges" class="mb-3"></div>
                             <div class="input-group">
-                                <input type="text" id="nuevo-contacto" class="form-control" placeholder="Nuevo contacto...">
-                                <button class="btn btn-primary" id="btn-agregar">Agregar</button>
+                                <input type="text" id="nuevo-contacto" class="form-control" placeholder="Nuevo contacto..." data-lang-placeholder="nuevoContacto">
+                                <button class="btn btn-primary" id="btn-agregar" data-lang="agregar">Agregar</button>
                             </div>
                         </div>
                     </div>
@@ -58,19 +61,19 @@
                     <!-- formulario envio -->
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="mb-3">Transferir fondos</h3>
+                            <h3 class="mb-3" data-lang="transferirFondos">Transferir fondos</h3>
                             <form id="form-envio">
                                 <div class="mb-3">
-                                    <label class="form-label">Destinatario</label>
-                                    <input type="text" id="destinatario" class="form-control" placeholder="Selecciona o escribe un nombre" list="mis-contactos" required>
+                                    <label class="form-label" data-lang="labelDestinatario">Destinatario</label>
+                                    <input type="text" id="destinatario" class="form-control" placeholder="Selecciona o escribe un nombre" data-lang-placeholder="placeholderDestinatario" list="mis-contactos" required>
                                     <datalist id="mis-contactos"></datalist>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Monto</label>
-                                    <input type="text" id="monto" class="form-control" placeholder="Ej: 5000 o 5.000" required>
+                                    <label class="form-label" data-lang="labelMontoEnvio">Monto</label>
+                                    <input type="text" id="monto" class="form-control" placeholder="Ej: 5000 o 5.000" data-lang-placeholder="placeholderMontoEnvio" required>
                                 </div>
                                 <div class="mt-4">
-                                    <button type="submit" class="btn btn-success w-100">Enviar dinero</button>
+                                    <button type="submit" class="btn btn-success w-100" data-lang="btnEnviar">Enviar dinero</button>
                                 </div>
                             </form>
                         </div>
@@ -81,7 +84,7 @@
         </section>
     </main>
     <footer>
-        <p class="text-center">© 2026 Hoyte's Bank</p>
+        <p class="text-center" data-lang="footer">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -242,6 +245,16 @@
                 window.location.href = "menu.html";
             }, 2000)
         });
+    </script>
+    <script src="assets/js/lang.js"></script>
+    <script>
+        document.querySelectorAll("[data-lang]").forEach(function(el){
+            el.textContent = t(el.getAttribute("data-lang"));
+        });
+        document.querySelectorAll("[data-lang-placeholder]").forEach(function(el){
+            el.placeholder = t(el.getAttribute("data-lang-placeholder"));
+        });
+        document.getElementById("lang-label").textContent = getIdioma() === "es" ? "EN" : "ES";
     </script>
 </body>
 </html>

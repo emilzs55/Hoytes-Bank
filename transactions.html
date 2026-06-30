@@ -18,6 +18,9 @@
     <header class="d-flex justify-content-between align-items-center">
         <a href="menu.html" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
         <h1 class="text-center"><a href="menu.html">Hoyte's Bank</a></h1>
+        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+        </button>
         <button id="logout" class="btn btn-danger">
             <i class="fa-solid fa-power-off"></i>
         </button>
@@ -26,7 +29,7 @@
         <section class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10">
-                    <h2 class="text-center mb-4">Historial de movimientos</h2>
+                    <h2 class="text-center mb-4" data-lang="historialMov">Historial de movimientos</h2>
                     
                     <div class="card">
                         <div class="card-body">
@@ -34,10 +37,10 @@
                                 <table class="table table-hover mt-2">
                                     <thead>
                                         <tr>
-                                            <th>Fecha</th>
-                                            <th>Tipo</th>
-                                            <th>Monto</th>
-                                            <th>Detalle</th>
+                                            <th data-lang="thFecha">Fecha</th>
+                                            <th data-lang="thTipo">Tipo</th>
+                                            <th data-lang="thMonto">Monto</th>
+                                            <th data-lang="thDetalle">Detalle</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabla-movimientos">
@@ -45,7 +48,7 @@
                                 </table>
                             </div>
                             <div id="vacio" class="text-center py-4" style="display: none;">
-                                <p>No tienes transacciones registradas aún.</p>
+                                <p data-lang="sinMovimientos">No tienes transacciones registradas aún.</p>
                             </div>
                         </div>
                     </div>
@@ -55,7 +58,7 @@
         </section>
     </main>
     <footer>
-        <p class="text-center">© 2026 Hoyte's Bank</p>
+        <p class="text-center" data-lang="footer">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -104,6 +107,13 @@
             
             $(".table").hide().fadeIn(500);
         }
+    </script>
+    <script src="assets/js/lang.js"></script>
+    <script>
+        document.querySelectorAll("[data-lang]").forEach(function(el){
+            el.textContent = t(el.getAttribute("data-lang"));
+        });
+        document.getElementById("lang-label").textContent = getIdioma() === "es" ? "EN" : "ES";
     </script>
 </body>
 </html>

@@ -18,6 +18,9 @@
     <header class="d-flex justify-content-between align-items-center">
         <a href="menu.html" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
         <h1 class="text-center"><a href="menu.html">Hoyte's Bank</a></h1>
+        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+        </button>
         <button id="logout" class="btn btn-danger">
             <i class="fa-solid fa-power-off"></i>
         </button>
@@ -31,11 +34,11 @@
                             <i class="fa-solid fa-microchip chip-tarjeta mb-0"></i>
                             <span class="badge bg-light text-dark fw-bold">HOYTE'S BANK</span>
                         </div>
-                        <p class="text-white-50 mb-0 small text-uppercase">Saldo disponible</p>
+                        <p class="text-white-50 mb-0 small text-uppercase" data-lang="saldoDisponible">Saldo disponible</p>
                         <span class="saldo mb-3">£0</span>
                         <div class="d-flex justify-content-between align-items-end mt-3">
                             <div>
-                                <p class="text-white-50 mb-0 small">Titular de la cuenta</p>
+                                <p class="text-white-50 mb-0 small" data-lang="titularCuenta">Titular de la cuenta</p>
                                 <h5 class="mb-0 fw-normal id-titular">Usuario Hoyte's</h5>
                             </div>
                             <i class="fa-brands fa-cc-visa fs-1 text-white-50"></i>
@@ -116,22 +119,22 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark border border-secondary text-light">
                 <div class="modal-header border-bottom border-secondary">
-                    <h5 class="modal-title" id="modalLogoutLabel"><i class="fa-solid fa-power-off text-danger me-2"></i> Cerrar Sesión</h5>
+                    <h5 class="modal-title" id="modalLogoutLabel"><i class="fa-solid fa-power-off text-danger me-2"></i> <span data-lang="cerrarSesion">Cerrar Sesión</span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body py-4">
+                <div class="modal-body py-4" data-lang="cerrarSesionMsg">
                     ¿Estás seguro de que deseas salir de tu cuenta Hoyte's Bank?
                 </div>
                 <div class="modal-footer border-top border-secondary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirmar-logout">Sí, salir</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-lang="cancelar">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmar-logout" data-lang="siSalir">Sí, salir</button>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p class="text-center">© 2026 Hoyte's Bank</p>
+        <p class="text-center" data-lang="footer">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -192,6 +195,13 @@
         $(document).ready(function(){
             $(".card").hide().fadeIn(600);
         });
+    </script>
+    <script src="assets/js/lang.js"></script>
+    <script>
+        document.querySelectorAll("[data-lang]").forEach(function(el){
+            el.textContent = t(el.getAttribute("data-lang"));
+        });
+        document.getElementById("lang-label").textContent = getIdioma() === "es" ? "EN" : "ES";
     </script>
 </body>
 </html>

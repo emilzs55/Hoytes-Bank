@@ -8,49 +8,70 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!--Estilos-->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
+    <header class="d-flex justify-content-between align-items-center">
+        <div style="width:40px"></div>
         <h1 class="text-center"><a href="index.html">Hoyte's Bank</a></h1>
+        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+        </button>
     </header>
     <main>
         <section class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
                     <div id="mensaje"></div>
-                    <h2 class="text-center mb-4">Registro de usuario</h2>
+                    <h2 class="text-center mb-4" data-lang="tituloRegistro">Registro de usuario</h2>
                     <form id="form-registro">
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre completo</label>
-                            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                            <label for="nombre" class="form-label" data-lang="labelNombre">Nombre completo</label>
+                            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese su nombre" data-lang-placeholder="placeholderNombre" required>
                         </div>
                         <div class="mb-3">
-                            <label for="usuario" class="form-label">Usuario</label>
-                            <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
+                            <label for="usuario" class="form-label" data-lang="labelUsuario">Usuario</label>
+                            <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Ingrese su usuario" data-lang-placeholder="placeholderUsuario" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Mín. 8 caracteres, 1 mayúscula, 1 símbolo y 2 números" required minlength="8">
+                            <label for="correo" class="form-label" data-lang="labelCorreo">Correo electrónico</label>
+                            <input type="email" name="correo" class="form-control" id="correo" placeholder="ejemplo@correo.com" data-lang-placeholder="placeholderCorreo" required>
                         </div>
                         <div class="mb-3">
-                            <label for="confirmar_password" class="form-label">Confirmar contraseña</label>
-                            <input type="password" name="confirmar_password" class="form-control" id="confirmar_password" placeholder="Reingrese su contraseña" required>
+                            <label for="password" class="form-label" data-lang="labelPassword">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Mín. 8 caracteres, 1 mayúscula, 1 símbolo y 2 números" data-lang-placeholder="placeholderPasswordReg" required minlength="8">
+                                <button class="btn btn-outline-secondary btn-toggle-pass" type="button" data-target="password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmar_password" class="form-label" data-lang="labelConfirmar">Confirmar contraseña</label>
+                            <div class="input-group">
+                                <input type="password" name="confirmar_password" class="form-control" id="confirmar_password" placeholder="Reingrese su contraseña" data-lang-placeholder="placeholderConfirmar" required>
+                                <button class="btn btn-outline-secondary btn-toggle-pass" type="button" data-target="confirmar_password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="mt-5">
-                            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                            <button type="submit" class="btn btn-primary w-100" data-lang="btnRegistrarse">Registrarse</button>
                         </div>
                     </form>
                     <div>
-                        <p class="text-center pt-3">¿Ya tienes cuenta? <a href="login.html" >Iniciar sesión</a></p>
+                        <p class="text-center pt-3"><span data-lang="yaTienesCuenta">¿Ya tienes cuenta?</span> <a href="login.html" data-lang="linkIniciarSesion">Iniciar sesión</a></p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     <footer>
-        <p class="text-center">© 2026 Hoyte's Bank</p>
+        <p class="text-center" data-lang="footer">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -114,6 +135,7 @@
             const nuevoUsuario = {
                 nombre: nombreLimpio, 
                 usuario: usuario, 
+                correo: document.getElementById("correo").value.trim().toLowerCase(),
                 password: password
             };
 
@@ -138,6 +160,34 @@
             }, 2500);
 
         })
+
+        // toggle para mostrar/ocultar contraseña
+        document.querySelectorAll(".btn-toggle-pass").forEach(function(btn){
+            btn.addEventListener("click", function(){
+                var input = document.getElementById(btn.getAttribute("data-target"));
+                var icono = btn.querySelector("i");
+                if(input.type === "password"){
+                    input.type = "text";
+                    icono.classList.remove("fa-eye");
+                    icono.classList.add("fa-eye-slash");
+                } else {
+                    input.type = "password";
+                    icono.classList.remove("fa-eye-slash");
+                    icono.classList.add("fa-eye");
+                }
+            });
+        });
+    </script>
+
+    <script src="assets/js/lang.js"></script>
+    <script>
+        document.querySelectorAll("[data-lang]").forEach(function(el){
+            el.textContent = t(el.getAttribute("data-lang"));
+        });
+        document.querySelectorAll("[data-lang-placeholder]").forEach(function(el){
+            el.placeholder = t(el.getAttribute("data-lang-placeholder"));
+        });
+        document.getElementById("lang-label").textContent = getIdioma() === "es" ? "EN" : "ES";
     </script>
 </body>
 </html>

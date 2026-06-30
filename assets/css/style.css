@@ -162,6 +162,21 @@ footer{
     color: rgba(255, 255, 255, 0.4);
 }
 
+/* boton ojo de contraseña */
+.btn-toggle-pass{
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #f3e5ab;
+    border-radius: 0 12px 12px 0 !important;
+    transition: all 0.2s ease;
+}
+
+.btn-toggle-pass:hover{
+    background: rgba(212, 175, 55, 0.3);
+    color: #fff;
+    border-color: #d4af37;
+}
+
 .form-control:focus{
     background-color: rgba(0, 0, 0, 0.5);
     color: white;

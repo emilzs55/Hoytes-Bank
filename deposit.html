@@ -18,6 +18,9 @@
     <header class="d-flex justify-content-between align-items-center">
         <a href="menu.html" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
         <h1 class="text-center"><a href="menu.html">Hoyte's Bank</a></h1>
+        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+        </button>
         <button id="logout" class="btn btn-danger">
             <i class="fa-solid fa-power-off"></i>
         </button>
@@ -31,7 +34,7 @@
                             <i class="fa-solid fa-microchip chip-tarjeta mb-0"></i>
                             <span class="badge bg-light text-dark fw-bold">HOYTE'S BANK</span>
                         </div>
-                        <p class="text-white-50 mb-0 small text-uppercase">Saldo en cuenta</p>
+                        <p class="text-white-50 mb-0 small text-uppercase" data-lang="saldoEnCuenta">Saldo en cuenta</p>
                         <span class="saldo mb-0">£0</span>
                     </div>
                 </div>
@@ -44,14 +47,14 @@
                     <div id="mensaje"></div>
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center mb-3">Ingresar dinero</h3>
+                            <h3 class="text-center mb-3" data-lang="tituloDeposito">Ingresar dinero</h3>
                             <form id="form-deposito">
                                 <div class="mb-3">
-                                    <label for="monto" class="form-label">Monto a depositar</label>
-                                    <input type="text" class="form-control" id="monto" placeholder="Ej: 15000 o 15.000" required>
+                                    <label for="monto" class="form-label" data-lang="labelMonto">Monto a depositar</label>
+                                    <input type="text" class="form-control" id="monto" placeholder="Ej: 15000 o 15.000" data-lang-placeholder="placeholderMonto" required>
                                 </div>
                                 <div class="mt-4">
-                                    <button type="submit" class="btn btn-success w-100">Confirmar depósito</button>
+                                    <button type="submit" class="btn btn-success w-100" data-lang="btnDeposito">Confirmar depósito</button>
                                 </div>
                             </form>
                         </div>
@@ -61,7 +64,7 @@
         </section>
     </main>
     <footer>
-        <p class="text-center">© 2026 Hoyte's Bank</p>
+        <p class="text-center" data-lang="footer">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -151,6 +154,16 @@
                 window.location.href = "menu.html";
             }, 2000)
         });
+    </script>
+    <script src="assets/js/lang.js"></script>
+    <script>
+        document.querySelectorAll("[data-lang]").forEach(function(el){
+            el.textContent = t(el.getAttribute("data-lang"));
+        });
+        document.querySelectorAll("[data-lang-placeholder]").forEach(function(el){
+            el.placeholder = t(el.getAttribute("data-lang-placeholder"));
+        });
+        document.getElementById("lang-label").textContent = getIdioma() === "es" ? "EN" : "ES";
     </script>
 </body>
 </html>

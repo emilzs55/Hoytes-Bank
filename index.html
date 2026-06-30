@@ -8,29 +8,36 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!--Estilos-->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
+    <header class="d-flex justify-content-between align-items-center">
+        <div style="width:40px"></div>
         <h1 class="text-center"><a href="index.html">Hoyte's Bank</a></h1>
+        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+        </button>
     </header>
     <main>
         <section class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6 text-center">
-                    <h2>Bienvenido</h2>
-                    <p>Administra tus finanzas de forma simple y segura.</p>
+                    <h2 data-lang="bienvenido">Bienvenido</h2>
+                    <p data-lang="descripcion">Administra tus finanzas de forma simple y segura.</p>
                     <div>
-                        <a href="login.html" class="btn btn-success">Iniciar sesión</a>
-                        <a href="register.html" class="btn btn-primary">Registrarse</a>
+                        <a href="login.html" class="btn btn-success" data-lang="iniciarSesion">Iniciar sesión</a>
+                        <a href="register.html" class="btn btn-primary" data-lang="registrarse">Registrarse</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     <footer>
-        <p class="text-center">© 2026 Hoyte's Bank</p>
+        <p class="text-center" data-lang="footer">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -38,5 +45,13 @@
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/lang.js"></script>
+    <script>
+        document.querySelectorAll("[data-lang]").forEach(function(el){
+            el.textContent = t(el.getAttribute("data-lang"));
+        });
+        document.getElementById("lang-label").textContent = getIdioma() === "es" ? "EN" : "ES";
+    </script>
 </body>
 </html>
