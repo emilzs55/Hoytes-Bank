@@ -58,7 +58,7 @@ footer{
     color: #94a3b8;
 }
 
-/* Tarjetas con efecto Glassmorphism (Vidrio esmerilado) moderno */
+/* Tarjetas y contenedores */
 .card{
     background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(16px);
@@ -77,7 +77,7 @@ footer{
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Diseño visual de Tarjeta Bancaria Virtual (E-Wallet UI) */
+/* Tarjeta virtual del saldo */
 .tarjeta-virtual{
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -116,7 +116,7 @@ footer{
     letter-spacing: -1px;
 }
 
-/* Íconos redondos coloridos para menú de acciones */
+/* Iconos de acciones */
 .icono-accion{
     width: 65px;
     height: 65px;
@@ -134,7 +134,7 @@ footer{
     transform: scale(1.1) rotate(5deg);
 }
 
-/* Formularios modernos */
+/* Formularios */
 .form-label{
     font-weight: 500;
     color: #e2e8f0;
@@ -161,7 +161,7 @@ footer{
     border-color: #5cf5a0;
 }
 
-/* Botones con degradado atractivo */
+/* Botones */
 .btn{
     border-radius: 12px;
     padding: 12px 20px;
@@ -200,7 +200,7 @@ footer{
     border: none;
 }
 
-/* Tabla de movimientos estilizada */
+/* Tabla de movimientos */
 .table{
     color: white;
     margin-bottom: 0;
@@ -244,7 +244,7 @@ a:hover{
     color: #38ef7d;
 }
 
-/* Alertas estilizadas */
+/* Alertas */
 .alert{
     border-radius: 14px;
     backdrop-filter: blur(10px);
