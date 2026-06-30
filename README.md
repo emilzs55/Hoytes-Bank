@@ -1,4 +1,4 @@
-# Alke Wallet 💳
+# Hoytes Wallet 💳
 
 Proyecto de aplicación web frontend para el desarrollo de una billetera virtual (E-Wallet), realizado como parte de las prácticas y evaluación final del Módulo 2.
 
@@ -6,7 +6,7 @@ Proyecto de aplicación web frontend para el desarrollo de una billetera virtual
 
 ## 📋 Descripción del Proyecto
 
-**Alke Wallet** es una plataforma de administración de dinero digital que se ejecuta completamente en el navegador web del usuario. Permite simular las operaciones habituales de una billetera financiera de forma intuitiva, rápida y segura sin necesidad de instalar programas adicionales ni conectarse a una base de datos externa.
+**Hoytes Wallet** es una plataforma de administración de dinero digital que se ejecuta completamente en el navegador web del usuario. Permite simular las operaciones habituales de una billetera financiera de forma intuitiva, rápida y segura sin necesidad de instalar programas adicionales ni conectarse a una base de datos externa.
 
 ---
 
