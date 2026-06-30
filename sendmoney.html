@@ -26,11 +26,13 @@
         <section class="container mb-3">
             <div class="row justify-content-center">
                 <div class="col-10 col-md-8 col-lg-6">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h2>Saldo disponible</h2>
-                            <span class="saldo">$0</span>
+                    <div class="tarjeta-virtual text-start mb-2">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <i class="fa-solid fa-microchip chip-tarjeta mb-0"></i>
+                            <span class="badge bg-light text-dark fw-bold">ALKE VIRTUAL</span>
                         </div>
+                        <p class="text-white-50 mb-0 small text-uppercase">Saldo disponible</p>
+                        <span class="saldo mb-0">$0</span>
                     </div>
                 </div>
             </div>
@@ -160,10 +162,40 @@
                 return;
             }
 
+            // filtro firewall
+            let firewallActivo = localStorage.getItem("firewallCripto");
+            if(firewallActivo === null) firewallActivo = "true";
+
+            let sitiosRiesgo = ["bitcoin", "cripto", "crypto", "binance", "casino", "apuesta", "buda", "moonpay"];
+            let destMin = destinatario.toLowerCase();
+
+            let esRiesgoso = sitiosRiesgo.some(function(palabra){ return destMin.includes(palabra); });
+
+            if(firewallActivo === "true" && esRiesgoso){
+                document.getElementById("mensaje").innerHTML = `
+                <div class="alert alert-danger alert-dismissible fade show border border-2 border-danger">
+                    <strong><i class="fa-solid fa-shield-halved"></i> BLOQUEO FIREWALL:</strong> Transferencia detenida automáticamente por seguridad. Tienes activada la protección contra operaciones en sitios de Criptomonedas y Casinos. Puedes apagar este escudo desde el Menú principal.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                `;
+                return;
+            }
+
+            // validar monto
             if(monto <= 0 || isNaN(monto)){
                 document.getElementById("mensaje").innerHTML = `
                 <div class="alert alert-danger alert-dismissible fade show">
                     Monto inválido.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                `;
+                return;
+            }
+
+            if(monto > 200000){
+                document.getElementById("mensaje").innerHTML = `
+                <div class="alert alert-warning alert-dismissible fade show">
+                    Por seguridad, el tope máximo por transferencia es de $200.000.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
                 `;
