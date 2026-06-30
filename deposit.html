@@ -48,7 +48,7 @@
                             <form id="form-deposito">
                                 <div class="mb-3">
                                     <label for="monto" class="form-label">Monto a depositar</label>
-                                    <input type="number" class="form-control" id="monto" placeholder="Ej: 15000" required>
+                                    <input type="text" class="form-control" id="monto" placeholder="Ej: 15000 o 15.000" required>
                                 </div>
                                 <div class="mt-4">
                                     <button type="submit" class="btn btn-success w-100">Confirmar depósito</button>
@@ -99,7 +99,9 @@
         $("#form-deposito").on("submit", function(event){
             event.preventDefault();
 
-            const monto = Number($("#monto").val());
+            // limpiar puntos de miles si el usuario ingresa ej: 100.000
+            let montoLimpio = $("#monto").val().replace(/\./g, "").replace(/,/g, "").trim();
+            const monto = Number(montoLimpio);
 
             // validar monto
             if(monto <= 0 || isNaN(monto)){
