@@ -28,13 +28,14 @@ header{
     z-index: 1000;
 }
 
-header h1{
+header h1, header h1 a{
     font-size: 1.5rem;
     font-weight: 700;
     background: linear-gradient(90deg, #5cf5a0, #00d2ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
+    text-decoration: none;
 }
 
 main{
