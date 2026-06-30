@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 *{
     padding: 0;
@@ -7,112 +7,265 @@
 }
 
 body{
-    background-image: linear-gradient(45deg ,rgb(26, 50, 115), rgb(47, 147, 164));
-    font-family: "Inter", sans-serif;
-    color: white;
+    background: radial-gradient(circle at top right, #1e3c72, #2a5298, #0a1128);
+    background-attachment: fixed;
+    font-family: 'Outfit', sans-serif;
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Encabezado estilo barra de app móvil/web */
 header{
-    height: 8vh;
-    padding: 10px;
+    background: rgba(10, 17, 40, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 70px;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1{
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #5cf5a0, #00d2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
 }
 
 main{
-    height: 87vh;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 15px;
 }   
 
 #menu{
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 footer{
-    height: 5vh;
+    background: rgba(10, 17, 40, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
 }
 
-/* estilos para las tarjetas y contenedores */
+/* Tarjetas con efecto Glassmorphism (Vidrio esmerilado) moderno */
 .card{
-    background-color: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
     color: white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover{
-    transform: translateY(-2px);
-    transition: 0.3s;
+    transform: translateY(-5px);
+    border-color: rgba(92, 245, 160, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Diseño visual de Tarjeta Bancaria Virtual (E-Wallet UI) */
+.tarjeta-virtual{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.tarjeta-virtual::before{
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(92, 245, 160, 0.2), transparent 70%);
+    border-radius: 50%;
+}
+
+.chip-tarjeta{
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .saldo{
-    font-size: 2.2rem;
-    font-weight: bold;
+    font-size: 2.8rem;
+    font-weight: 700;
     color: #5cf5a0;
+    text-shadow: 0 2px 10px rgba(92, 245, 160, 0.3);
     display: block;
     margin: 10px 0;
+    letter-spacing: -1px;
+}
+
+/* Íconos redondos coloridos para menú de acciones */
+.icono-accion{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 1.6rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.card:hover .icono-accion{
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Formularios modernos */
+.form-label{
+    font-weight: 500;
+    color: #e2e8f0;
+    font-size: 0.95rem;
 }
 
 .form-control{
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    border-radius: 6px;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 1rem;
 }
 
 .form-control::placeholder{
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .form-control:focus{
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
-    box-shadow: none;
+    box-shadow: 0 0 0 4px rgba(92, 245, 160, 0.2);
     border-color: #5cf5a0;
 }
 
+/* Botones con degradado atractivo */
+.btn{
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+}
+
 .btn-success{
-    background-color: #2ecc71;
+    background: linear-gradient(135deg, #11998e, #38ef7d);
     border: none;
+    color: #0a1128;
+    box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3);
 }
 
 .btn-success:hover{
-    background-color: #27ae60;
+    background: linear-gradient(135deg, #0e8077, #2dd86b);
+    color: #0a1128;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 239, 125, 0.4);
 }
 
-/* tabla de transacciones */
+.btn-primary{
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    border: none;
+    box-shadow: 0 4px 15px rgba(78, 67, 118, 0.3);
+}
+
+.btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 67, 118, 0.5);
+}
+
+.btn-danger{
+    background: linear-gradient(135deg, #eb3349, #f45c43);
+    border: none;
+}
+
+/* Tabla de movimientos estilizada */
 .table{
     color: white;
+    margin-bottom: 0;
 }
 
 .table thead th{
-    background-color: rgba(255, 255, 255, 0.15);
-    border-bottom: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 15px;
 }
 
-.table-striped > tbody > tr:nth-of-type(odd){
-    background-color: rgba(255, 255, 255, 0.05);
-    --bs-table-bg-type: transparent;
+.table tbody td{
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover{
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 .badge{
-    margin-right: 5px;
-    margin-bottom: 5px;
-    font-weight: normal;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 a{
     color: #5cf5a0;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
+a:hover{
+    color: #38ef7d;
+}
+
+/* Alertas estilizadas */
+.alert{
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.bg-icono-deposito { background: linear-gradient(135deg, #11998e, #38ef7d); color: #0a1128; }
+.bg-icono-envio { background: linear-gradient(135deg, #3a7bd5, #3a6073); color: white; }
+.bg-icono-movimientos { background: linear-gradient(135deg, #8e2de2, #4a00e0); color: white; }
+.btn-movimientos { background: rgba(255,255,255,0.15); color: white; }
+.btn-movimientos:hover { background: rgba(255,255,255,0.25); color: white; }
+
 @media (max-width: 767px){
-    #menu{
-        height: 100%;
-        padding: 30px 0 50px;
+    header{
+        padding: 0 15px;
     }
     
     .saldo{
-        font-size: 1.8rem;
+        font-size: 2.2rem;
+    }
+    
+    .tarjeta-virtual{
+        padding: 20px;
     }
 }
