@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Depositar | Hoytes Wallet</title>
+    <title>Depositar | Hoyte's Bank</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body>
     <header class="d-flex justify-content-between align-items-center">
         <a href="menu.html" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
-        <h1 class="text-center"><a href="menu.html">Hoytes Wallet</a></h1>
+        <h1 class="text-center"><a href="menu.html">Hoyte's Bank</a></h1>
         <button id="logout" class="btn btn-danger">
             <i class="fa-solid fa-power-off"></i>
         </button>
@@ -29,10 +29,10 @@
                     <div class="tarjeta-virtual text-start">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <i class="fa-solid fa-microchip chip-tarjeta mb-0"></i>
-                            <span class="badge bg-light text-dark fw-bold">HOYTES VIRTUAL</span>
+                            <span class="badge bg-light text-dark fw-bold">HOYTE'S BANK</span>
                         </div>
                         <p class="text-white-50 mb-0 small text-uppercase">Saldo en cuenta</p>
-                        <span class="saldo mb-0">$0</span>
+                        <span class="saldo mb-0">£0</span>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         </section>
     </main>
     <footer>
-        <p class="text-center">© 2026 Hoytes Wallet</p>
+        <p class="text-center">© 2026 Hoyte's Bank</p>
     </footer>
     
     <!-- jQuery -->
@@ -93,7 +93,7 @@
         // mostrar saldo
         let saldo = Number(localStorage.getItem("saldo"));
         if(isNaN(saldo) || saldo < 0) saldo = 0;
-        document.querySelector(".saldo").textContent = "$" + saldo.toLocaleString("es-CL");
+        document.querySelector(".saldo").textContent = "£" + saldo.toLocaleString("en-GB");
 
         // evento depositar
         $("#form-deposito").on("submit", function(event){
@@ -117,7 +117,7 @@
             if(monto > 200000){
                 document.getElementById("mensaje").innerHTML = `
                 <div class="alert alert-warning alert-dismissible fade show">
-                    Por seguridad, el tope máximo por transacción es de $200.000.
+                    Por seguridad, el tope máximo por transacción es de £200,000.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
                 `;
@@ -137,7 +137,7 @@
             localStorage.setItem("transacciones", JSON.stringify(transacciones));
 
             $(".saldo").fadeOut(200, function(){
-                $(this).text("$" + saldo.toLocaleString("es-CL")).fadeIn(200);
+                $(this).text("£" + saldo.toLocaleString("en-GB")).fadeIn(200);
             });
 
             document.getElementById("mensaje").innerHTML = `

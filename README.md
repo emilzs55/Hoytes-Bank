@@ -1,4 +1,4 @@
-# Hoytes Wallet 💳
+# Hoyte's Bank 💳
 
 Proyecto de aplicación web frontend para el desarrollo de una billetera virtual (E-Wallet), realizado como parte de las prácticas y evaluación final del Módulo 2.
 
@@ -6,7 +6,7 @@ Proyecto de aplicación web frontend para el desarrollo de una billetera virtual
 
 ## 📋 Descripción del Proyecto
 
-**Hoytes Wallet** es una plataforma de administración de dinero digital que se ejecuta completamente en el navegador web del usuario. Permite simular las operaciones habituales de una billetera financiera de forma intuitiva, rápida y segura sin necesidad de instalar programas adicionales ni conectarse a una base de datos externa.
+**Hoyte's Bank** es una plataforma bancaria de administración de dinero digital que se ejecuta completamente en el navegador web del usuario. Permite simular las operaciones habituales de una entidad financiera en Libras Esterlinas (£) de forma intuitiva, rápida y segura sin necesidad de instalar programas adicionales ni conectarse a una base de datos externa.
 
 ---
 
@@ -24,10 +24,10 @@ Proyecto de aplicación web frontend para el desarrollo de una billetera virtual
 ## ✨ Funcionalidades Principales
 
 1. **Pantalla de Bienvenida (`index.html`):** Portal de acceso directo para iniciar sesión o crear una cuenta nueva.
-2. **Registro Segurizado (`register.html`):** Creación de cuentas con validación de contraseñas robustas (mínimo 8 caracteres, mayúsculas, símbolos y números) y sanitización de nombres. Al registrarse, asigna un saldo inicial de **$400.000 CLP**.
+2. **Registro Segurizado (`register.html`):** Creación de cuentas con validación de contraseñas robustas (mínimo 8 caracteres, mayúsculas, símbolos y números) y sanitización de nombres. Al registrarse, asigna un saldo inicial de prueba de **£400,000 GBP**.
 3. **Inicio de Sesión (`login.html`):** Verificación de credenciales registradas y protección de acceso.
 4. **Menú Principal (`menu.html`):** Visualización de la tarjeta bancaria virtual con el saldo actual, acceso rápido a todas las operaciones, botón de cierre de sesión con confirmación y un interruptor para encender o apagar el filtro antipeligros.
-5. **Depósito de Dinero (`deposit.html`):** Permite recargar fondos a la cuenta con validaciones de montos y formato chileno (acepta puntos de miles).
+5. **Depósito de Dinero (`deposit.html`):** Permite recargar fondos en Libras Esterlinas (£) a la cuenta con validación de montos.
 6. **Transferencias y Agenda (`sendmoney.html`):** Envío de dinero a otros usuarios con selector autocompletable de contactos. Incluye un botón para añadir nuevos contactos y un **Filtro de Seguridad Anti-Fraude** que bloquea transferencias a sitios dudosos (criptomonedas o apuestas).
 7. **Historial de Movimientos (`transactions.html`):** Tabla dinámica con el detalle cronológico de depósitos (en color verde con signo `+`) y transferencias realizadas (en color rojo con signo `-`).
 
