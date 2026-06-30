@@ -7,7 +7,7 @@
 }
 
 body{
-    background: radial-gradient(circle at top right, #1e3c72, #2a5298, #0a1128);
+    background: radial-gradient(circle at top right, #111827, #0f172a, #05070f);
     background-attachment: fixed;
     font-family: 'Outfit', sans-serif;
     color: #f8fafc;
@@ -18,9 +18,9 @@ body{
 
 /* Encabezado estilo barra de app móvil/web */
 header{
-    background: rgba(10, 17, 40, 0.75);
+    background: rgba(10, 15, 26, 0.85);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
     height: 70px;
     padding: 0 25px;
     position: sticky;
@@ -31,11 +31,12 @@ header{
 header h1, header h1 a{
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(90deg, #5cf5a0, #00d2ff);
+    background: linear-gradient(90deg, #f5d77f, #c5a059, #e6ca65);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
     text-decoration: none;
+    letter-spacing: 0.5px;
 }
 
 main{
@@ -52,8 +53,8 @@ main{
 }
 
 footer{
-    background: rgba(10, 17, 40, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(8, 12, 20, 0.95);
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
     padding: 15px 0;
     font-size: 0.85rem;
     color: #94a3b8;
@@ -61,32 +62,32 @@ footer{
 
 /* Tarjetas y contenedores */
 .card{
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(20, 28, 44, 0.65);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
     color: white;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover{
     transform: translateY(-5px);
-    border-color: rgba(92, 245, 160, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.15);
 }
 
-/* Tarjeta virtual del saldo */
+/* Tarjeta virtual del saldo (Estilo Aristocrático / Royal Bank) */
 .tarjeta-virtual{
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(25, 35, 55, 0.9), rgba(10, 15, 26, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.5);
     border-radius: 24px;
     padding: 25px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.15);
 }
 
 .tarjeta-virtual::before{
@@ -96,22 +97,28 @@ footer{
     right: -50%;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(92, 245, 160, 0.2), transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent 70%);
     border-radius: 50%;
+}
+
+.tarjeta-virtual .badge {
+    background: linear-gradient(135deg, #d4af37, #f3e5ab) !important;
+    color: #0d1b2a !important;
+    border: 1px solid #997a15;
 }
 
 .chip-tarjeta{
     font-size: 2rem;
-    color: #ffd700;
+    color: #f3e5ab;
     margin-bottom: 15px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
 }
 
 .saldo{
     font-size: 2.8rem;
     font-weight: 700;
-    color: #5cf5a0;
-    text-shadow: 0 2px 10px rgba(92, 245, 160, 0.3);
+    color: #f3e5ab;
+    text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4);
     display: block;
     margin: 10px 0;
     letter-spacing: -1px;
@@ -127,7 +134,7 @@ footer{
     justify-content: center;
     margin: 0 auto 15px;
     font-size: 1.6rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     transition: transform 0.3s ease;
 }
 
@@ -143,8 +150,8 @@ footer{
 }
 
 .form-control{
-    background-color: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     color: white;
     border-radius: 12px;
     padding: 12px 16px;
@@ -156,10 +163,10 @@ footer{
 }
 
 .form-control:focus{
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    box-shadow: 0 0 0 4px rgba(92, 245, 160, 0.2);
-    border-color: #5cf5a0;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
 }
 
 /* Botones */
@@ -172,33 +179,37 @@ footer{
 }
 
 .btn-success{
-    background: linear-gradient(135deg, #11998e, #38ef7d);
-    border: none;
+    background: linear-gradient(135deg, #c5a059, #e6ca65);
+    border: 1px solid #f5d77f;
     color: #0a1128;
-    box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3);
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
 }
 
 .btn-success:hover{
-    background: linear-gradient(135deg, #0e8077, #2dd86b);
+    background: linear-gradient(135deg, #b08d46, #d4af37);
     color: #0a1128;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(56, 239, 125, 0.4);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
 }
 
 .btn-primary{
-    background: linear-gradient(135deg, #2b5876, #4e4376);
-    border: none;
-    box-shadow: 0 4px 15px rgba(78, 67, 118, 0.3);
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #f3e5ab;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .btn-primary:hover{
+    background: linear-gradient(135deg, #334155, #475569);
+    border-color: #d4af37;
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(78, 67, 118, 0.5);
 }
 
 .btn-danger{
-    background: linear-gradient(135deg, #eb3349, #f45c43);
-    border: none;
+    background: linear-gradient(135deg, #881337, #be123c);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Tabla de movimientos */
@@ -208,9 +219,10 @@ footer{
 }
 
 .table thead th{
-    background-color: rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(212, 175, 55, 0.15);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.4);
     font-weight: 600;
+    color: #f3e5ab;
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
@@ -224,7 +236,7 @@ footer{
 }
 
 .table-hover tbody tr:hover{
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(212, 175, 55, 0.08);
 }
 
 .badge{
@@ -235,14 +247,14 @@ footer{
 }
 
 a{
-    color: #5cf5a0;
+    color: #e6ca65;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
 }
 
 a:hover{
-    color: #38ef7d;
+    color: #f5d77f;
 }
 
 /* Alertas */
@@ -251,11 +263,11 @@ a:hover{
     backdrop-filter: blur(10px);
 }
 
-.bg-icono-deposito { background: linear-gradient(135deg, #11998e, #38ef7d); color: #0a1128; }
-.bg-icono-envio { background: linear-gradient(135deg, #3a7bd5, #3a6073); color: white; }
-.bg-icono-movimientos { background: linear-gradient(135deg, #8e2de2, #4a00e0); color: white; }
-.btn-movimientos { background: rgba(255,255,255,0.15); color: white; }
-.btn-movimientos:hover { background: rgba(255,255,255,0.25); color: white; }
+.bg-icono-deposito { background: linear-gradient(135deg, #c5a059, #e6ca65); color: #0a1128; }
+.bg-icono-envio { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; }
+.bg-icono-movimientos { background: linear-gradient(135deg, #4a154b, #6b216d); color: white; }
+.btn-movimientos { background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3); color: #f3e5ab; }
+.btn-movimientos:hover { background: rgba(212, 175, 55, 0.25); color: white; }
 
 @media (max-width: 767px){
     header{
