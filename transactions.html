@@ -16,14 +16,23 @@
 </head>
 <body>
     <header class="d-flex justify-content-between align-items-center">
-        <a href="menu.html" class="btn btn-success"><i class="fa-solid fa-reply"></i></a>
-        <h1 class="text-center"><a href="menu.html">Hoyte's Bank</a></h1>
-        <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
-            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
-        </button>
-        <button id="logout" class="btn btn-danger">
-            <i class="fa-solid fa-power-off"></i>
-        </button>
+        <div class="d-flex gap-2">
+            <a href="menu.html" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-reply"></i></a>
+        </div>
+        <h1 class="text-center">
+            <a href="menu.html" class="d-flex align-items-center justify-content-center gap-2">
+                <span class="three-crowns" title="Hoyte's Bank Private Banking">♛♛♛</span>
+                <span>Hoyte's Bank</span>
+            </a>
+        </h1>
+        <div class="d-flex gap-2 align-items-center">
+            <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
+                <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
+            </button>
+            <button id="logout" class="btn btn-sm btn-danger">
+                <i class="fa-solid fa-power-off"></i>
+            </button>
+        </div>
     </header>
     <main class="py-5">
         <section class="container">

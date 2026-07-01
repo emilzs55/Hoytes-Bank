@@ -19,6 +19,14 @@ const LANG = {
         linkRegistrarse: "Registrarse",
         loginExito: "Inicio de sesión exitoso.",
         loginError: "Usuario y/o contraseña incorrectos.",
+        olvidePass: "¿Olvidaste tu contraseña?",
+        recuperarTitulo: "Recuperar Contraseña",
+        recuperarDesc: "Ingresa tu nombre de usuario para restablecer tu contraseña en el sistema.",
+        labelNuevaPass: "Nueva Contraseña",
+        btnBuscarUser: "Buscar Cuenta",
+        btnRestablecer: "Restablecer Contraseña",
+        userNoEncontrado: "No se encontró ninguna cuenta con ese usuario.",
+        passRestablecida: "Contraseña actualizada con éxito.",
 
         // register.html
         tituloRegistro: "Registro de usuario",
@@ -41,14 +49,18 @@ const LANG = {
         saldoDisponible: "Saldo disponible",
         titularCuenta: "Titular de la cuenta",
         depositar: "Depositar",
+        descDepositar: "Agrega dinero a tu billetera virtual al instante.",
         ingresarDinero: "Ingresar dinero",
         enviar: "Enviar",
         enviarDinero: "Enviar dinero",
+        descEnviar: "Realiza transferencias libres a otros usuarios.",
+        btnTransferir: "Transferir",
         movimientos: "Movimientos",
+        descMovimientos: "Consulta el historial detallado de transacciones.",
         ultimosMovimientos: "Últimos movimientos",
         btnVerMovimientos: "Ver historial",
-        filtroSeguridad: "Filtro de seguridad",
-        proteccion: "Bloqueo de transacciones a sitios cripto y apuestas",
+        filtroSeguridad: "Firewall Anti-Fraude",
+        proteccion: "Bloqueo automático de transferencias a sitios de Criptomonedas y Casinos",
         cerrarSesion: "Cerrar Sesión",
         cerrarSesionMsg: "¿Estás seguro de que deseas salir de tu cuenta Hoyte's Bank?",
         cancelar: "Cancelar",
@@ -77,6 +89,9 @@ const LANG = {
         fondosInsuficientes: "Fondos insuficientes para esta transferencia.",
         topeTransferencia: "Por seguridad, el tope máximo por transferencia es de £200,000.",
         filtroBloqueo: "El Filtro de Seguridad ha bloqueado esta transferencia. Motivo: el destinatario coincide con un sitio potencialmente peligroso (cripto/apuestas).",
+        envioExito1: "Transferencia de £",
+        envioExito2: " enviada con éxito a ",
+        envioExito3: ". Redirigiendo...",
 
         // transactions.html
         historialMov: "Historial de movimientos",
@@ -84,7 +99,8 @@ const LANG = {
         thTipo: "Tipo",
         thMonto: "Monto",
         thDetalle: "Detalle",
-        sinMovimientos: "No tienes transacciones registradas aún."
+        sinMovimientos: "No tienes transacciones registradas aún.",
+        sesionExpirada: "Por seguridad, tu sesión ha sido cerrada automáticamente tras 1 minuto de inactividad."
     },
     en: {
         // index.html
@@ -105,6 +121,14 @@ const LANG = {
         linkRegistrarse: "Sign Up",
         loginExito: "Login successful.",
         loginError: "Incorrect username and/or password.",
+        olvidePass: "Forgot your password?",
+        recuperarTitulo: "Reset Password",
+        recuperarDesc: "Enter your username to reset your password in the system.",
+        labelNuevaPass: "New Password",
+        btnBuscarUser: "Find Account",
+        btnRestablecer: "Reset Password",
+        userNoEncontrado: "No account found with that username.",
+        passRestablecida: "Password updated successfully.",
 
         // register.html
         tituloRegistro: "Create Account",
@@ -127,14 +151,18 @@ const LANG = {
         saldoDisponible: "Available Balance",
         titularCuenta: "Account Holder",
         depositar: "Deposit",
+        descDepositar: "Add money to your digital wallet instantly.",
         ingresarDinero: "Deposit Funds",
         enviar: "Send",
         enviarDinero: "Send Money",
+        descEnviar: "Make fee-free transfers to other users.",
+        btnTransferir: "Transfer",
         movimientos: "History",
+        descMovimientos: "Check your detailed transaction history.",
         ultimosMovimientos: "Recent Transactions",
         btnVerMovimientos: "View History",
-        filtroSeguridad: "Security Filter",
-        proteccion: "Block transactions to crypto and gambling sites",
+        filtroSeguridad: "Anti-Fraud Firewall",
+        proteccion: "Automatic blocking of transfers to Crypto and Gambling sites",
         cerrarSesion: "Log Out",
         cerrarSesionMsg: "Are you sure you want to log out of your Hoyte's Bank account?",
         cancelar: "Cancel",
@@ -163,6 +191,9 @@ const LANG = {
         fondosInsuficientes: "Insufficient funds for this transfer.",
         topeTransferencia: "For security, the maximum per transfer is £200,000.",
         filtroBloqueo: "The Security Filter has blocked this transfer. Reason: the recipient matches a potentially dangerous site (crypto/gambling).",
+        envioExito1: "Transfer of £",
+        envioExito2: " successfully sent to ",
+        envioExito3: ". Redirecting...",
 
         // transactions.html
         historialMov: "Transaction History",
@@ -170,7 +201,8 @@ const LANG = {
         thTipo: "Type",
         thMonto: "Amount",
         thDetalle: "Details",
-        sinMovimientos: "You have no transactions recorded yet."
+        sinMovimientos: "You have no transactions recorded yet.",
+        sesionExpirada: "For your security, your session has been automatically logged out after 1 minute of inactivity."
     }
 };
 
@@ -190,3 +222,36 @@ function t(clave){
     const idioma = getIdioma();
     return LANG[idioma][clave] || clave;
 }
+
+// Sistema de Ciberseguridad: Cierre de Sesión por Inactividad (1 minuto / 60 segundos)
+function iniciarControlInactividad() {
+    // Solo activar si hay un usuario logueado
+    const usuarioLog = localStorage.getItem("usuarioLogueado");
+    if (!usuarioLog) return;
+
+    let temporizadorInactividad;
+    const TIEMPO_LIMITE = 60000; // 60 segundos en milisegundos
+
+    function cerrarSesionPorInactividad() {
+        localStorage.removeItem("usuarioLogueado");
+        alert(t("sesionExpirada"));
+        window.location.href = "login.html";
+    }
+
+    function reiniciarTemporizador() {
+        clearTimeout(temporizadorInactividad);
+        temporizadorInactividad = setTimeout(cerrarSesionPorInactividad, TIEMPO_LIMITE);
+    }
+
+    // Escuchar eventos de interacción en la ventana
+    window.addEventListener("mousemove", reiniciarTemporizador);
+    window.addEventListener("mousedown", reiniciarTemporizador);
+    window.addEventListener("keypress", reiniciarTemporizador);
+    window.addEventListener("scroll", reiniciarTemporizador);
+    window.addEventListener("touchstart", reiniciarTemporizador);
+
+    // Iniciar temporizador
+    reiniciarTemporizador();
+}
+
+window.addEventListener("DOMContentLoaded", iniciarControlInactividad);

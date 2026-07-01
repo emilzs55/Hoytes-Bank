@@ -17,7 +17,12 @@
 <body>
     <header class="d-flex justify-content-between align-items-center">
         <div style="width:40px"></div>
-        <h1 class="text-center"><a href="index.html">Hoyte's Bank</a></h1>
+        <h1 class="text-center">
+            <a href="index.html" class="d-flex align-items-center justify-content-center gap-2">
+                <span class="three-crowns" title="Hoyte's Bank Private Banking">♛♛♛</span>
+                <span>Hoyte's Bank</span>
+            </a>
+        </h1>
         <button id="btn-lang" class="btn btn-sm btn-outline-warning" onclick="setIdioma(getIdioma() === 'es' ? 'en' : 'es')">
             <i class="fa-solid fa-globe"></i> <span id="lang-label">EN</span>
         </button>
@@ -26,11 +31,14 @@
         <section class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6 text-center">
-                    <h2 data-lang="bienvenido">Bienvenido</h2>
-                    <p data-lang="descripcion">Administra tus finanzas de forma simple y segura.</p>
-                    <div>
-                        <a href="login.html" class="btn btn-success" data-lang="iniciarSesion">Iniciar sesión</a>
-                        <a href="register.html" class="btn btn-primary" data-lang="registrarse">Registrarse</a>
+                    <div class="mb-3">
+                        <span style="font-size: 2.5rem; color: var(--gold-primary); letter-spacing: 12px;">♛♛♛</span>
+                    </div>
+                    <h2 data-lang="bienvenido" class="mb-3" style="font-size: 2.8rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Bienvenido</h2>
+                    <p data-lang="descripcion" class="text-white-50 mb-5 fs-5">Administra tus finanzas de forma simple y segura.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="login.html" class="btn btn-success px-4 py-3" data-lang="iniciarSesion">Iniciar sesión</a>
+                        <a href="register.html" class="btn btn-primary px-4 py-3" data-lang="registrarse">Registrarse</a>
                     </div>
                 </div>
             </div>
@@ -48,6 +56,14 @@
 
     <script src="assets/js/lang.js"></script>
     <script>
+        // Ciberseguridad: Si ya hay una sesión activa, redirigir automáticamente al menú privado
+        try {
+            const sesionActiva = JSON.parse(localStorage.getItem("usuarioLogueado"));
+            if(sesionActiva && sesionActiva.usuario){
+                window.location.href = "menu.html";
+            }
+        } catch(e) {}
+
         document.querySelectorAll("[data-lang]").forEach(function(el){
             el.textContent = t(el.getAttribute("data-lang"));
         });

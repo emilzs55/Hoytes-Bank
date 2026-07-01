@@ -1,46 +1,56 @@
-# Hoyte's Bank 💳
+# Hoyte's Bank
 
-Proyecto de aplicación web frontend para el desarrollo de una billetera virtual (E-Wallet), realizado como parte de las prácticas y evaluación final del Módulo 2.
+Aplicación web de billetera virtual (e-wallet) desarrollada como proyecto final del
+Módulo 2. Todo funciona del lado del cliente: no hay servidor ni base de datos externa,
+los datos se guardan en el `localStorage` del navegador.
 
----
+## Tecnologías
 
-## 📋 Descripción del Proyecto
+- **HTML5** para la estructura de las 7 vistas.
+- **CSS3** en `assets/css/style.css` para el diseño (paleta oscura con acentos dorados,
+  tipografías Cormorant Garamond y Outfit).
+- **Bootstrap 5.3.8** para la grilla responsive, los modales y componentes.
+- **JavaScript (ES6)** para la lógica: registro, login, validaciones, transacciones.
+- **jQuery 3.7.1** para recorrer arreglos (`$.each`), animaciones (`fadeIn`, `slideDown`)
+  y manipular el DOM en algunas vistas.
+- **localStorage** para persistir usuarios, saldo, contactos e historial.
 
-**Hoyte's Bank** es una plataforma bancaria de administración de dinero digital que se ejecuta completamente en el navegador web del usuario. Permite simular las operaciones habituales de una entidad financiera en Libras Esterlinas (£) de forma intuitiva, rápida y segura sin necesidad de instalar programas adicionales ni conectarse a una base de datos externa.
+## Estructura del código
 
----
+- La lógica de cada pantalla va **en un `<script>` dentro de su propio HTML**. No hay un
+  `main.js` central: cada vista carga solo lo que necesita.
+- `assets/js/lang.js` es el único JS compartido: contiene el diccionario de traducciones
+  ES/EN y las funciones `getIdioma()`, `setIdioma()`, `t()` y el auto-logout por
+  inactividad.
 
-## 🛠️ Tecnologías Utilizadas
+## Vistas (7)
 
-* **HTML5:** Estructuración semántica de las 6 vistas oficiales de la aplicación (`header`, `main`, `section`, `footer`).
-* **Bootstrap 5.3.8:** Sistema de rejilla responsive (`grid`), diseño adaptable para móviles y ventanas modales de confirmación.
-* **CSS3:** Estilos personalizados en `assets/css/style.css` (diseño de tarjeta virtual, efectos visuales y gradientes).
-* **JavaScript (ES6):** Lógica principal de negocio, control de sesiones, validaciones de seguridad y formateo de monedas.
-* **jQuery 3.7.1:** Manipulación del DOM, recorrido de arreglos (`$.each`) y animaciones visuales suaves (`fadeIn`, `fadeOut`, `slideDown`).
-* **HTML5 Web Storage (`localStorage`):** Almacenamiento persistente en el navegador para mantener guardados los usuarios, el saldo disponible, la agenda y el historial de transacciones.
+1. `index.html` — pantalla de bienvenida con acceso a login y registro.
+2. `register.html` — registro con validación de contraseña (mín. 8 caracteres,
+   1 mayúscula, 1 símbolo y 2 números). Asigna un saldo inicial de prueba de £400.000.
+3. `login.html` — inicio de sesión y recuperación de contraseña mediante un modal.
+4. `menu.html` — tarjeta virtual con el saldo, accesos a las operaciones, cierre de
+   sesión con confirmación e interruptor del filtro anti-fraude.
+5. `deposit.html` — depósito de fondos con validación de monto y tope de £200.000.
+6. `sendmoney.html` — transferencias con agenda de contactos y filtro que bloquea envíos
+   a destinatarios sospechosos (cripto / apuestas).
+7. `transactions.html` — historial de movimientos (depósitos en verde, envíos en rojo).
 
----
+Además: interfaz bilingüe ES/EN con un botón en el encabezado, y cierre de sesión
+automático tras 1 minuto de inactividad en las vistas privadas.
 
-## ✨ Funcionalidades Principales
+## Cómo ejecutarlo
 
-1. **Pantalla de Bienvenida (`index.html`):** Portal de acceso directo para iniciar sesión o crear una cuenta nueva.
-2. **Registro Segurizado (`register.html`):** Creación de cuentas con validación de contraseñas robustas (mínimo 8 caracteres, mayúsculas, símbolos y números) y sanitización de nombres. Al registrarse, asigna un saldo inicial de prueba de **£400,000 GBP**.
-3. **Inicio de Sesión (`login.html`):** Verificación de credenciales registradas y protección de acceso.
-4. **Menú Principal (`menu.html`):** Visualización de la tarjeta bancaria virtual con el saldo actual, acceso rápido a todas las operaciones, botón de cierre de sesión con confirmación y un interruptor para encender o apagar el filtro antipeligros.
-5. **Depósito de Dinero (`deposit.html`):** Permite recargar fondos en Libras Esterlinas (£) a la cuenta con validación de montos.
-6. **Transferencias y Agenda (`sendmoney.html`):** Envío de dinero a otros usuarios con selector autocompletable de contactos. Incluye un botón para añadir nuevos contactos y un **Filtro de Seguridad Anti-Fraude** que bloquea transferencias a sitios dudosos (criptomonedas o apuestas).
-7. **Historial de Movimientos (`transactions.html`):** Tabla dinámica con el detalle cronológico de depósitos (en color verde con signo `+`) y transferencias realizadas (en color rojo con signo `-`).
+Al ser un sitio estático se puede abrir `index.html` directamente en el navegador. Para
+evitar restricciones de rutas conviene servirlo con un servidor local, por ejemplo:
 
----
+```
+python -m http.server 8000
+```
 
-## 🚀 Cómo Ejecutar el Proyecto
+y abrir `http://localhost:8000/`.
 
-1. Clona o descarga este repositorio en tu computadora.
-2. Abre la carpeta del proyecto en tu explorador de archivos.
-3. Haz doble clic en el archivo **`index.html`** para abrirlo en tu navegador web favorito (Google Chrome, Firefox, Edge, etc.).
-4. ¡Listo! Puedes registrar un usuario de prueba para comenzar a operar.
+## Documentación
 
----
-
-## 👨‍💻 Autor
-Proyecto desarrollado para la evaluación práctica de Front-End.
+En `SDD_Hoytes_Bank_ewallet.md` está el documento de diseño con la explicación detallada
+de cada archivo y de las claves usadas en `localStorage`.
