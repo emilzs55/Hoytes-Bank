@@ -1,7 +1,7 @@
 # Hoyte's Bank
 
 Aplicación web de billetera virtual (e-wallet) desarrollada como proyecto final del
-Módulo 3. Todo funciona del lado del cliente: no hay servidor ni base de datos externa,
+Módulo 2. Todo funciona del lado del cliente: no hay servidor ni base de datos externa,
 los datos se guardan en el `localStorage` del navegador.
 
 ## Tecnologías
